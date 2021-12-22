@@ -7,6 +7,12 @@ const config = require("config");
 const app = express();
 const db = config.get("db");
 
+// Import routes
+const home = require("./routes/home");
+const auth = require("./routes/auth");
+// const users = require("./routes/users");
+// const admin = require("./routes/admin");
+
 //Connect to mongodb
 mongoose
   .connect(db, {
@@ -20,6 +26,12 @@ app.use(cors());
 app.use(fileUpload());
 app.use(express.json());
 app.use("/static", express.static("public"));
+
+// Routes
+app.use("/", home);
+app.use("/api/auth", auth);
+// app.use("/api/users", users);
+// app.use("/api/admin", admin);
 
 const port = process.env.PORT || 5050;
 app.listen(port, () => {
