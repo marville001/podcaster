@@ -18,10 +18,17 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    required: true,
+    required: false,
     minlength: 6,
     maxlength: 255,
-    unique: true,
+    unique: false,
+  },
+  description: {
+    type: String,
+    required: false,
+    minlength: 6,
+    maxlength: 1000,
+    unique: false,
   },
   password: {
     type: String,

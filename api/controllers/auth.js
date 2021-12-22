@@ -1,6 +1,6 @@
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
-const path = require("path");
+const { dirname } = require("path");
 const { v4: uuidv4 } = require("uuid");
 const _ = require("lodash");
 const { User, validate } = require("../models/user");
@@ -33,7 +33,7 @@ module.exports = {
 
       res.send({
         success: true,
-        user: _.pick(user, ["_id", "name", "email", "isAdmin"]),
+        user: _.pick(user, ["_id", "name", "email", "isAdmin", "avatar"]),
         token: user.generateAuthToken(),
       });
     } catch (error) {
@@ -47,14 +47,6 @@ module.exports = {
         return res
           .status(400)
           .send({ success: false, message: error.details[0].message });
-      if (!req.files) {
-        if (!req.files.avatar) {
-          return res
-            .status(400)
-            .send({ success: false, message: "Avartar is required" });
-        }
-      }
-      const avatar = req.files.avatar;
 
       let user = await User.findOne({ email: req.body.email });
       if (user)
@@ -62,14 +54,7 @@ module.exports = {
           .status(400)
           .send({ success: false, message: "user already registered..." });
 
-      let avatar_id = uuidv4();
-      console.log(path.__dirname);
-      avatar.mv(`${__dirname}/public/uploads/${avatar_id+"_"+avatar.name}`);
-
-      user = new User({
-        ..._.pick(req.body, ["name", "email", "password"]),
-        avartar: `${avatar_id + avatar.name}`,
-      });
+      user = new User(_.pick(req.body, ["name", "email", "password"]));
 
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(user.password, salt);
@@ -77,7 +62,7 @@ module.exports = {
 
       res.send({
         success: true,
-        user: _.pick(user, ["_id", "name", "email", "isAdmin"]),
+        user: _.pick(user, ["_id", "name", "email", "isAdmin", "avatar"]),
         token: user.generateAuthToken(),
       });
     } catch (error) {
