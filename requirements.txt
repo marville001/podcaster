@@ -1,11 +1,10 @@
-* User can register or login in app
-* As a user you can edit a Profile :
-* user can create bio or "small description about yourself"
-* user can add photo in ur profile
+* User can register or login in app ✔️
+* As a user you can edit a Profile : ✔️
+* user can create bio or "small description about yourself" ✔️
+* user can add photo in ur profile ✔️
 * user can suscribe with podcast
-* If the user subscribes to the podcast, a notification will come every time a new episode of this podcast comes.
-* user can update bio
-* user can update his avatar
+* user can update bio ✔️
+* user can update his avatar ✔️
 * User Should be have account to :
 * Create new podcast :
 * Name of Podcast
@@ -16,6 +15,7 @@
 * Publish in home page
 * Share podcast with friends
 * Write a comment to other podcast
+* If the user subscribes to the podcast, a notification will come every time a new episode of this podcast comes.
 * As a admin you can Delete user > manage
 * As a user you can listining podcast as u like
 * As a user you can search any podcast u want .
