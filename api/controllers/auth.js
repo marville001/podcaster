@@ -1,10 +1,7 @@
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
-const { dirname } = require("path");
-const { v4: uuidv4 } = require("uuid");
 const _ = require("lodash");
 const { User, validate } = require("../models/user");
-const auth = require("../middleware/auth");
 
 module.exports = {
   login: async (req, res) => {
@@ -54,7 +51,7 @@ module.exports = {
           .status(400)
           .send({ success: false, message: "user already registered..." });
 
-      user = new User(_.pick(req.body, ["name", "email", "password"]));
+      user = new User(_.pick(req.body, ["name", "email", "password", "username", "gender"]));
 
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(user.password, salt);
@@ -62,7 +59,7 @@ module.exports = {
 
       res.send({
         success: true,
-        user: _.pick(user, ["_id", "name", "email", "isAdmin", "avatar"]),
+        user: _.pick(user, ["_id", "name", "email", "isAdmin", "avatar", , "username", "gender"]),
         token: user.generateAuthToken(),
       });
     } catch (error) {
