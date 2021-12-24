@@ -11,7 +11,7 @@ const home = require("./routes/home");
 const auth = require("./routes/auth");
 const users = require("./routes/users");
 const podcast = require('./routes/podcast');
-// const admin = require("./routes/admin");
+const subscriptions = require("./routes/subscriptions");
 
 //Connect to mongodb
 mongoose
@@ -32,6 +32,7 @@ app.use("/", home);
 app.use("/api/auth", auth);
 app.use("/api/users", users);
 app.use("/api/podcasts", podcast);
+app.use("/api/subscriptions", subscriptions);
 // app.use("/api/admin", admin);
 
 const port = process.env.PORT || 5050;

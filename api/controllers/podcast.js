@@ -1,5 +1,10 @@
 const _ = require("lodash");
-const { Podcast, validatePodcast } = require("../models/user");
+const mongoose = require("mongoose");
+const { Podcast, validatePodcast } = require("../models/podcast");
+const { User } = require("../models/user");
+const { dirname } = require("path");
+const { v4: uuidv4 } = require("uuid");
+
 
 module.exports = {
   // Create podcast controller
@@ -60,6 +65,7 @@ module.exports = {
         "userId",
         "category",
         "description",
+        "photo"
       ]),
     });
   },

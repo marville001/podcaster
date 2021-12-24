@@ -7,6 +7,12 @@ const subscriptionSchema = new mongoose.Schema({
     minlength: 6,
     maxlength: 50,
   },
+  userId: {
+    type: String,
+    required: true,
+    minlength: 6,
+    maxlength: 50,
+  },
 });
 
 const Subscription = mongoose.model("Subscription", subscriptionSchema);

@@ -86,6 +86,7 @@ module.exports = {
   },
 };
 
+// validate profile data
 function validateProfile(profile) {
   const schema = Joi.object().keys({
     userId: Joi.string().min(5).max(50).required(),
