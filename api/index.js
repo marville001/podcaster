@@ -10,6 +10,7 @@ const app = express();
 const home = require("./routes/home");
 const auth = require("./routes/auth");
 const users = require("./routes/users");
+const podcast = require('./routes/podcast');
 // const admin = require("./routes/admin");
 
 //Connect to mongodb
@@ -30,6 +31,7 @@ app.use("/static", express.static("public"));
 app.use("/", home);
 app.use("/api/auth", auth);
 app.use("/api/users", users);
+app.use("/api/podcasts", podcast);
 // app.use("/api/admin", admin);
 
 const port = process.env.PORT || 5050;
