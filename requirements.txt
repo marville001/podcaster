@@ -2,15 +2,15 @@
 * As a user you can edit a Profile : ✔️
 * user can create bio or "small description about yourself" ✔️
 * user can add photo in ur profile ✔️
-* user can suscribe with podcast
 * user can update bio ✔️
 * user can update his avatar ✔️
-* User Should be have account to :
-* Create new podcast :
-* Name of Podcast
-* Category of this podcast
+* User Should be have account to : ✔️
+* Create new podcast : ✔️
+* Name of Podcast ✔️
+* Category of this podcast ✔️
+* user can add cover Photo to his Podcasts ✔️
+* user can suscribe with podcast
 * Upload the episode from device
-* user can add cover Photo to his Podcasts
 * As a user u can (add music to your episode ) or feature ( listen in background)
 * Publish in home page
 * Share podcast with friends
