@@ -4,14 +4,10 @@ const subscriptionSchema = new mongoose.Schema({
   podcastId: {
     type: String,
     required: true,
-    minlength: 6,
-    maxlength: 50,
   },
   userId: {
     type: String,
     required: true,
-    minlength: 6,
-    maxlength: 50,
   },
 });
 
