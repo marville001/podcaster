@@ -5,7 +5,6 @@ const { User } = require("../models/user");
 const { dirname } = require("path");
 const { v4: uuidv4 } = require("uuid");
 
-
 module.exports = {
   // Create podcast controller
   createPodcast: async (req, res) => {
@@ -65,16 +64,39 @@ module.exports = {
         "userId",
         "category",
         "description",
-        "photo"
+        "photo",
       ]),
     });
   },
   //   Get All podcasts controller
   getAllPodcasts: async (req, res) => {
-    res.send("Route getAllPodcasts");
+    try {
+      let podcasts = await Podcast.find().select("-__v");
+      res.send({ success: true, podcasts });
+    } catch (error) {
+      console.log(error.message);
+    }
   },
   //   Get one podcast controller
   getOnePodcast: async (req, res) => {
-    res.send("Route getOnePodcast");
+    let { id } = req.params;
+    try {
+
+      //validate id
+    if (!mongoose.Types.ObjectId.isValid(id))
+    return res
+      .status(400)
+      .json({ success: false, message: "Invalid podcast id" });
+
+      const podcast = await Podcast.findById(id).select("-__v");;
+      if (!podcast)
+        return res
+          .status(400)
+          .json({ success: false, message: "Podcast does not exist" });
+
+      res.send({ success: true, podcast });
+    } catch (error) {
+      console.log(error.message);
+    }
   },
 };

@@ -33,6 +33,18 @@ const episodeSchema = new mongoose.Schema({
 
 const Episode = mongoose.model("Episode", episodeSchema);
 
+// Function to validate podcast fields
+function validateEpisode(podcast) {
+  const schema = Joi.object().keys({
+    name: Joi.string().required(),
+    podcastId: Joi.string().required(),
+    title: Joi.string().required(),
+    date: Joi.date().required(),
+  });
+  return schema.validate(podcast);
+}
+
 module.exports = {
   Episode,
+  validateEpisode
 };
